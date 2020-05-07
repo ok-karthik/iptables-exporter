@@ -1,0 +1,20 @@
+*mangle
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+COMMIT
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -p tcp -m tcp --dport 7000 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 9160 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 7199 -j ACCEPT
+-A INPUT -p tcp -m tcp --dport 9042 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --sport 7000 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --sport 9160 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --sport 7199 -j ACCEPT
+-A OUTPUT -p tcp -m tcp --sport 9042 -j ACCEPT
+COMMIT
